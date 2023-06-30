@@ -8,7 +8,7 @@ import ssl
 import time
 from typing import Union
 
-from ffprobe import FFProbe
+import ffmpeg
 import aiohttp
 import pycountry
 import requests
@@ -116,12 +116,8 @@ class M3uParser:
 
     async def _get_status(self, stream_link):
         try:
-            metadata=FFProbe(stream_link)
-            for stream in metadata.streams:
-                if stream.is_video():
-                    return "GOOD"
-                else:
-                    return "BAD"
+            metadata=ffmpeg.probe(stream_link)
+            return "GOOD"
         except:
             pass
         return "BAD"
