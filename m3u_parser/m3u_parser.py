@@ -8,6 +8,7 @@ import ssl
 import time
 from typing import Union
 
+from ffprobe import FFProbe
 import aiohttp
 import pycountry
 import requests
