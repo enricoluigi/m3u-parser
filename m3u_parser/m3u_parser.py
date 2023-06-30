@@ -297,16 +297,7 @@ class M3uParser:
             self._streams_info = [
                 {
                     "name": stream_info.get("name"),
-                    "logo": stream_info.get("logo"),
                     "url": stream_info.get("url"),
-                    "category": stream_info.get("category"),
-                    "tvg": {
-                        "id": stream_info.get("tvg_id"),
-                        "name": stream_info.get("tvg_name"),
-                        "url": stream_info.get("tvg_url"),
-                    },
-                    "country": {"code": stream_info.get("country_code"), "name": stream_info.get("country_name")},
-                    "language": {"code": stream_info.get("language_code"), "name": stream_info.get("language_name")},
                     "status": stream_info.get("status") or "BAD",
                 }
                 for stream_info in streams_info
