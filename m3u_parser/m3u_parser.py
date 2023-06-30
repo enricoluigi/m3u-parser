@@ -115,11 +115,15 @@ class M3uParser:
         logger.info("Parsing completed !!!")
 
     async def _get_status(self, stream_link):
+        print("probing")
         try:
             metadata=ffmpeg.probe(stream_link)
+            print("probing ok")
             return "GOOD"
         except:
+            print("probin fail")
             pass
+        print("passou do except")
         return "BAD"
 
     async def _check_status(self, index):
