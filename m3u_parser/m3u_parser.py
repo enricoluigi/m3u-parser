@@ -115,15 +115,12 @@ class M3uParser:
 
     async def _get_status(self, stream_link):
         try:
-            async with aiohttp.ClientSession() as session:
-                async with session.request(
-                    "get",
-                    stream_link,
-                    headers=self._headers,
-                    timeout=self._timeout,
-                ) as response:
-                    if response.status == 200:
-                        return "GOOD"
+            metadata=FFProbe(stream_link)
+            for stream in metadata.streams:
+                if stream.is_video():
+                    return "GOOD"
+                else:
+                    return "BAD"
         except:
             pass
         return "BAD"
